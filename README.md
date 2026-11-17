@@ -129,6 +129,14 @@ O servidor fica disponível em `http://localhost:3000`.
 | PUT | `/reservas/:id` | Dono ou ADMIN | Atualiza uma reserva |
 | DELETE | `/reservas/:id` | Dono ou ADMIN | Cancela uma reserva |
 
+### Usuários
+
+| Método | Rota | Acesso | Descrição |
+|---|---|---|---|
+| GET | `/usuarios` | ADMIN | Lista os usuários (sem a senha) |
+| GET | `/usuarios/:id` | ADMIN | Busca um usuário (sem a senha) |
+| GET | `/usuarios/:id/reservas` | ADMIN | Lista as reservas de um usuário |
+
 ### Exemplos de corpo (JSON)
 
 Cadastro:
