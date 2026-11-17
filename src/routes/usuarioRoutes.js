@@ -10,5 +10,6 @@ router.use(autenticar, autorizar('ADMIN'));
 router.get('/', usuarioController.listar);
 router.get('/:id', usuarioController.buscarPorId);
 router.get('/:id/reservas', usuarioController.listarReservas);
+router.delete('/:id', usuarioController.excluir);
 
 module.exports = router;

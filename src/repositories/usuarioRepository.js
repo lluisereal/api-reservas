@@ -1,4 +1,4 @@
-const { Usuario } = require('../models');
+const { Usuario, Reserva } = require('../models');
 
 const SEM_SENHA = { exclude: ['senha'] };
 
@@ -22,10 +22,20 @@ async function buscarPorIdSemSenha(id) {
   return Usuario.findByPk(id, { attributes: SEM_SENHA });
 }
 
+async function contarReservas(usuarioId) {
+  return Reserva.count({ where: { usuarioId } });
+}
+
+async function excluir(usuario) {
+  return usuario.destroy();
+}
+
 module.exports = {
   buscarPorEmail,
   buscarPorId,
   criar,
   listar,
   buscarPorIdSemSenha,
+  contarReservas,
+  excluir,
 };

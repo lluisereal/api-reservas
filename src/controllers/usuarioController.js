@@ -27,4 +27,13 @@ async function listarReservas(req, res, next) {
   }
 }
 
-module.exports = { listar, buscarPorId, listarReservas };
+async function excluir(req, res, next) {
+  try {
+    await usuarioService.excluir(req.params.id, req.usuario);
+    return res.status(204).send();
+  } catch (erro) {
+    next(erro);
+  }
+}
+
+module.exports = { listar, buscarPorId, listarReservas, excluir };

@@ -19,4 +19,19 @@ async function listarReservas(id) {
   return reservaRepository.listarPorUsuario(usuario.id);
 }
 
-module.exports = { listar, buscarPorId, listarReservas };
+async function excluir(id, usuarioLogado) {
+  const usuario = await buscarPorId(id);
+
+  if (usuario.id === usuarioLogado.id) {
+    throw new AppError('Você não pode excluir o próprio usuário', 409);
+  }
+
+  const totalReservas = await usuarioRepository.contarReservas(usuario.id);
+  if (totalReservas > 0) {
+    throw new AppError('Não é possível excluir um usuário que possui reservas', 409);
+  }
+
+  await usuarioRepository.excluir(usuario);
+}
+
+module.exports = { listar, buscarPorId, listarReservas, excluir };

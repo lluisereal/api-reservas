@@ -21,7 +21,7 @@ async function listar() {
 async function buscarPorId(id) {
   const sala = await salaRepository.buscarPorId(id);
   if (!sala) {
-    throw new AppError('Sala não encontrada', 404);
+    throw new AppError('Sala inexistente', 404);
   }
   return sala;
 }
