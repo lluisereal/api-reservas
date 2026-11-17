@@ -1,5 +1,6 @@
 const express = require('express');
 const reservaRoutes = require('./routes/reservaRoutes');
+const usuarioRoutes = require('./routes/usuarioRoutes');
 const authRoutes = require('./routes/authRoutes');
 const salaRoutes = require('./routes/salaRoutes');
 const errorHandler = require('./middlewares/errorHandler');
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 app.use('/salas', salaRoutes);
 app.use('/auth', authRoutes);
 app.use('/reservas', reservaRoutes);
+app.use('/usuarios', usuarioRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ erro: 'Rota não encontrada' });

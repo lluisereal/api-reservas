@@ -1,5 +1,7 @@
 const { Usuario } = require('../models');
 
+const SEM_SENHA = { exclude: ['senha'] };
+
 async function buscarPorEmail(email) {
   return Usuario.findOne({ where: { email } });
 }
@@ -12,4 +14,18 @@ async function criar(dados) {
   return Usuario.create(dados);
 }
 
-module.exports = { buscarPorEmail, buscarPorId, criar };
+async function listar() {
+  return Usuario.findAll({ attributes: SEM_SENHA, order: [['id', 'ASC']] });
+}
+
+async function buscarPorIdSemSenha(id) {
+  return Usuario.findByPk(id, { attributes: SEM_SENHA });
+}
+
+module.exports = {
+  buscarPorEmail,
+  buscarPorId,
+  criar,
+  listar,
+  buscarPorIdSemSenha,
+};
